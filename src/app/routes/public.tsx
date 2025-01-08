@@ -1,28 +1,20 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Navigate, useLocation } from 'react-router-dom'
-import LoginPage from '../pages/auth/login'
+import { Navigate } from 'react-router-dom'
 import AuthLayout from '../layouts/auth-layout'
-import RegisterPage from '../pages/auth/register'
+import AuthRoutes from '../pages/auth/routes'
 
-const AuthRoutes = () => {
-   const location = useLocation()
-   const resolvePage = location.pathname.includes('/login') ? (
-      <LoginPage />
-   ) : location.pathname.includes('/register') ? (
-      <RegisterPage />
-   ) : null
-
-   return <AuthLayout>{resolvePage}</AuthLayout>
+const Auth = () => {
+   return (
+      <AuthLayout>
+         <AuthRoutes />
+      </AuthLayout>
+   )
 }
 
 export const publicRoutes = [
    {
       path: '/login',
-      element: <AuthRoutes />,
-   },
-   {
-      path: '/register',
-      element: <AuthRoutes />,
+      element: <Auth />,
    },
    {
       path: '*',
