@@ -8,9 +8,10 @@ import { LoginSchema, LoginType } from './types/login-schema'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import AuthLayout from '@/app/layouts/auth-layout'
+import { Loader2 } from 'lucide-react'
 
 export default function LoginPage() {
-   const { signIn } = useAuth()
+   const { signIn, isLoggingIn } = useAuth()
 
    const { register, handleSubmit } = useForm<LoginType>({
       resolver: zodResolver(LoginSchema),
@@ -72,9 +73,14 @@ export default function LoginPage() {
                      {...register('password')}
                   />
                </div>
-               <Button type='submit' className='w-full'>
-                  Login
-               </Button>
+               {isLoggingIn ? (
+                  <Button disabled>
+                     <Loader2 className='animate-spin' />
+                     Aguarde
+                  </Button>
+               ) : (
+                  <Button type='submit'>Entrar</Button>
+               )}
                <div className='relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
                   <span className='relative z-10 bg-background px-2 text-muted-foreground'>
                      Ou faça login com
