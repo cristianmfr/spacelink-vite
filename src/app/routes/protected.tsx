@@ -1,13 +1,22 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import MainLayout from '../layouts/main-layout'
 import { Suspense } from 'react'
-import MainRoutes from '../pages/main/routes'
+
+import { DashboardRoutes } from '../pages/main/dashboard/routes'
+import { CustomersRoutes } from '../pages/main/customers/routes'
+import { WalletRoutes } from '../pages/main/wallets/routes'
+import { ProfileRoutes } from '../pages/main/profile/routes'
 
 const App = () => {
+   const location = useLocation()
+
+   const isAppRoute = location.pathname.startsWith('/app')
+
    return (
       <MainLayout>
          <Suspense>
+            {isAppRoute && <DashboardRoutes />}
             <Outlet />
          </Suspense>
       </MainLayout>
@@ -20,8 +29,11 @@ export const protectedRoutes = [
       element: <App />,
       exact: true,
       children: [
-         { path: '/', element: <MainRoutes /> },
+         { path: 'customers/*', element: <CustomersRoutes /> },
+         { path: 'wallet/*', element: <WalletRoutes /> },
+         { path: 'user/*', element: <ProfileRoutes /> },
          { path: '*', element: <Navigate to='/app' /> },
       ],
    },
+   { path: '*', element: <Navigate to='/app' /> },
 ]

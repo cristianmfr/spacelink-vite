@@ -1,5 +1,3 @@
-'use client'
-
 import { Image } from '@/components/atoms/image'
 import Icon from '/favicon.ico'
 import { Label } from '@/components/atoms/label'

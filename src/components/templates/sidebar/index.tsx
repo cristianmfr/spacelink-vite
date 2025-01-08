@@ -32,17 +32,17 @@ const data = {
    navMain: [
       {
          title: 'Visão geral',
-         url: '/',
+         url: '/app',
          icon: SquareTerminal,
       },
       {
          title: 'Usuários',
-         url: '/customers',
+         url: 'customers',
          icon: UserRoundSearch,
       },
       {
          title: 'Carteira',
-         url: '/wallet',
+         url: 'wallet',
          icon: Wallet,
       },
    ],
