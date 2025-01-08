@@ -16,6 +16,9 @@ export default defineConfig({
    publicDir: 'src/assets',
    server: {
       port: 3000,
+      fs: {
+         allow: ['..'],
+      },
       // proxy: {
       //    '/app': {
       //       target: 'http://app.localhost:3000/',
